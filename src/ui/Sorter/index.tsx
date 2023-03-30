@@ -1,18 +1,22 @@
 import { Select } from "antd"
 import styles from "@/styles/Filter.module.css"
 import { sorterOptions } from "@/data/Sorter"
-import { SorterEnum } from "../Filter/index.type"
+import { Sorter, SorterEnum } from "../Filter/index.type"
+import { updateSorterValue } from "@/store/Books/Books.actions"
+import { useAppDispatch } from "@/store"
 
 const Sorter = () => {
+    const dispatch = useAppDispatch();
 
-    const handleChange = () => {
-
+    const handleChange = (value: Sorter) => {
+         dispatch(updateSorterValue(value))
     }
 
     return(
         <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
             <div style={{minWidth: "fit-content", marginRight: "15px"}}>Sort by</div>
             <Select 
+                onChange={handleChange}
                 className={styles["filter-sorter-select"]} 
                 options={sorterOptions}
                 defaultValue={SorterEnum.relevance}

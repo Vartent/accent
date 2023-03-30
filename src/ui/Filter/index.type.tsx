@@ -12,3 +12,7 @@ export enum SorterEnum {
     relevance = 'relevance',
     newest = 'newest'
 }
+
+export type Filter = keyof typeof FilterEnum;
+
+export type Sorter = keyof typeof SorterEnum;

@@ -1,12 +1,43 @@
-import { Input } from "antd"
+import { Button, Input } from "antd"
 import styles from '@/styles/Search.module.css'
+import getBooks, { RequestData } from "@/utils/http"
+import { ChangeEvent, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState, useAppDispatch } from "@/store"
+import { submitSearchRequest, updateSearchQuery } from "@/store/Books/Books.actions"
+import { BASE_URL } from "@/utils/constants"
 
 const SearchBar = () => {
+
+    const booksRequestData = useSelector((state: RootState) => state.books)
+    
+    const dispatch = useAppDispatch()
+
+    const requestData: RequestData = {
+        baseUrl: BASE_URL,
+        searchQuery: booksRequestData.query,
+        filter: booksRequestData.filter,
+        sorter: booksRequestData.sorter,
+        startIndex: booksRequestData.startIndex
+    }
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(updateSearchQuery(event.target.value))
+    }
+
+    const handleSearch = () => {
+        dispatch(submitSearchRequest(requestData))
+    }
 
     return(
         <div className={styles["search-container"]}>
             <h3>Looking for books?</h3>
-            <Input className={styles['search-bar']} placeholder='Type in and get it'/>
+            <Input.Search 
+                value={booksRequestData.query}
+                onChange={handleChange} 
+                onSearch={handleSearch} 
+                className={styles['search-bar']} 
+                placeholder='Type in and get it'/>
         </div>
     )
 }

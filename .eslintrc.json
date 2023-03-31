@@ -28,22 +28,6 @@
         "typescript-sort-keys"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
     "padding-line-between-statements": [
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" },
@@ -97,42 +81,37 @@
     ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/member-ordering": [
-      "error",
-      {
-        "default": {
-          "memberTypes": [
-            // Index signature
-            "signature",
-
-            // Fields
-            "public-instance-field",
-            "protected-instance-field",
-            "private-instance-field",
-            "public-static-field",
-            "protected-static-field",
-            "private-static-field",
-            "public-abstract-field",
-            "protected-abstract-field",
-            "private-abstract-field",
-            "field",
-
-            // Methods
-            "public-instance-method",
-            "protected-instance-method",
-            "private-instance-method",
-            "public-static-method",
-            "protected-static-method",
-            "private-static-method",
-            "public-abstract-method",
-            "protected-abstract-method",
-            "private-abstract-method",
-            "method"
-          ],
-          "order": "alphabetically"
-        }
-      }
-    ],
+    // "@typescript-eslint/member-ordering": [
+    //   "error",
+    //   {
+    //     "default": {
+    //       "memberTypes": [
+    //         "signature",
+    //         "public-instance-field",
+    //         "protected-instance-field",
+    //         "private-instance-field",
+    //         "public-static-field",
+    //         "protected-static-field",
+    //         "private-static-field",
+    //         "public-abstract-field",
+    //         "protected-abstract-field",
+    //         "private-abstract-field",
+    //         "field",
+    //         "public-instance-method",
+    //         "protected-instance-method",
+    //         "private-instance-method",
+    //         "public-static-method",
+    //         "protected-static-method",
+    //         "private-static-method",
+    //         "public-abstract-method",
+    //         "protected-abstract-method",
+    //         "private-abstract-method",
+    //         "method"
+    //       ],
+    //       "order": "alphabetically"
+    //     }
+    //   }
+    // ],
     "@typescript-eslint/lines-between-class-members": [
       "error",
       "always",

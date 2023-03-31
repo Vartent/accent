@@ -1,1 +1,1 @@
-export { default as SearchHeaderLayout } from './SearchHeader'
+export { default as SearchHeaderLayout } from "./SearchHeader";

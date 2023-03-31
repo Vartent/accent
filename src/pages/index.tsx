@@ -1,17 +1,14 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import BooksGrid from '@/ui/Books'
-import { SearchHeaderLayout } from '@/layouts'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store'
-import { Skeleton } from 'antd'
+import { Skeleton } from "antd";
+import Head from "next/head";
+import { useSelector } from "react-redux";
 
-
-const inter = Inter({ subsets: ['latin'] })
+import { SearchHeaderLayout } from "@/layouts";
+import { RootState } from "@/store";
+import BooksGrid from "@/ui/Books";
 
 export default function Home() {
+  const isLoading = useSelector((state: RootState) => state.books.isLoading);
 
-  const isLoading = useSelector((state: RootState) => state.books.isLoading)
   return (
     <>
       <Head>
@@ -20,9 +17,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <SearchHeaderLayout>
-          {isLoading? <Skeleton active/> :<BooksGrid/>}
-        </SearchHeaderLayout>
+      <SearchHeaderLayout>
+        {isLoading ? <Skeleton active /> : <BooksGrid />}
+      </SearchHeaderLayout>
     </>
-  )
+  );
 }

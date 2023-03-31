@@ -1,18 +1,18 @@
 export type Item = {
-    id: string;
-    volumeInfo: {
-        title: string;
-        authors: string[];
-        categories: string[];
-        imageLinks: {
-            smallThumbnail: string;
-            thumbnail: string;
-        }
-        description: string;
-    }
-}
+  id: string;
+  volumeInfo: {
+    authors: string[];
+    categories: string[];
+    description: string;
+    imageLinks: {
+      smallThumbnail: string;
+      thumbnail: string;
+    };
+    title: string;
+  };
+};
 
 export type VolumeDTO = {
-    totalItems: number,
-    items: Item[]
-}
+  items: Item[];
+  totalItems: number;
+};

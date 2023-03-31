@@ -1,5 +1,4 @@
-import {configureStore} from "@reduxjs/toolkit"
-
+import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 
@@ -16,8 +15,8 @@ const sagaMiddleware = createSagaMiddleware();
 //     : compose;
 
 const initStore = configureStore({
-    reducer: rootReducer,
-    middleware: [sagaMiddleware]
+  reducer: rootReducer,
+  middleware: [sagaMiddleware],
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

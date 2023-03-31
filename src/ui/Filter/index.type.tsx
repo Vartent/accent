@@ -1,16 +1,16 @@
 export enum FilterEnum {
-    all = 'all', 
-    art ='art', 
-    biography ='biography', 
-    computers ='computers', 
-    history ='history', 
-    medical ='medical', 
-    poetry ='poetry'
+  all = "all",
+  art = "art",
+  biography = "biography",
+  computers = "computers",
+  history = "history",
+  medical = "medical",
+  poetry = "poetry",
 }
 
 export enum SorterEnum {
-    relevance = 'relevance',
-    newest = 'newest'
+  newest = "newest",
+  relevance = "relevance",
 }
 
 export type Filter = keyof typeof FilterEnum;

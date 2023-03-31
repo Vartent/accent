@@ -1,6 +1,7 @@
+import { Item } from "@/dto/VolumeDTO";
 import { BooksData } from "@/entities";
 import { Filter, Sorter } from "@/ui/Filter/index.type";
-import { RequestData } from "@/utils/http";
+import { RequestData } from "@/utils/httpSearch";
 import { 
     UPDATE_SEARCH_RESULT,
     SUBMIT_SEARCH_REQUEST,
@@ -8,14 +9,29 @@ import {
     UPDATE_SEARCH_QUERY, 
     UPDATE_SORTER_VALUE, 
     UPDATE_START_INDEX,
-    NONE_FOUND,
     SUBMIT_MORE_BOOKS,
-    MORE_BOOKS_RECEIVED
+    MORE_BOOKS_RECEIVED,
+    SUBMIT_BOOK_REQUEST,
+    BOOK_RECEIVED
 } from "./Books.constants";
 
 import { 
     BooksActionTypes,
 } from "./Books.type";
+
+export function submitBookRequest(payload: string): BooksActionTypes{
+    return{
+        type: SUBMIT_BOOK_REQUEST,
+        payload
+    }
+}
+
+export function bookReceived(payload: Item): BooksActionTypes{
+    return{
+        type: BOOK_RECEIVED,
+        payload
+    }
+}
 
 export function submitMoreBooks(payload: RequestData): BooksActionTypes{
     return{

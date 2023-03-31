@@ -13,8 +13,8 @@ const Sorter = () => {
     }
 
     return(
-        <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-            <div style={{minWidth: "fit-content", marginRight: "15px"}}>Sort by</div>
+        <div className={styles['select-container']}>
+            <div className={styles['select-title']}>Sort by</div>
             <Select 
                 onChange={handleChange}
                 className={styles["filter-sorter-select"]} 

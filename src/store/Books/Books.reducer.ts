@@ -7,6 +7,8 @@ import {
     UPDATE_SORTER_VALUE,
     SUBMIT_MORE_BOOKS,
     MORE_BOOKS_RECEIVED,
+    SUBMIT_BOOK_REQUEST,
+    BOOK_RECEIVED,
     // NONE_FOUND
 } from "./Books.constants";
 
@@ -16,10 +18,12 @@ const initialState: BooksState = {
     sorter: SorterEnum.relevance,
     filter: FilterEnum.all,
     query: "",
+    selectedBook: null,
     booksData: null,
     startIndex: 0,
     isLoading: false,
     isLoadingMoreBooks: false,
+    isLoadingBook: false,
     showResults: false, //before we start searching there's no need to show books grid or amount of results. If total amount = 0 and showResults = true => nothing found
 }
 
@@ -71,6 +75,17 @@ export default function BooksReducer (
                 },
                 startIndex: state.startIndex + action.payload.items.length
                 
+            }
+        case SUBMIT_BOOK_REQUEST:
+            return{
+                ...state,
+                isLoadingBook: true
+            }
+        case BOOK_RECEIVED:
+            return{
+                ...state,
+                selectedBook: action.payload,
+                isLoadingBook: false
             }
         default:
             return state

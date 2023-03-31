@@ -5,21 +5,25 @@ import {
     UPDATE_SEARCH_QUERY, 
     UPDATE_SORTER_VALUE,
     UPDATE_START_INDEX,
-    NONE_FOUND,
     SUBMIT_MORE_BOOKS,
-    MORE_BOOKS_RECEIVED
+    MORE_BOOKS_RECEIVED,
+    SUBMIT_BOOK_REQUEST,
+    BOOK_RECEIVED
 } from "./Books.constants";
 import { BooksData } from "@/entities";
 import { Filter, Sorter } from "@/ui/Filter/index.type";
-import { RequestData } from "@/utils/http";
+import { RequestData } from "@/utils/httpSearch";
+import { Item } from "@/dto/VolumeDTO";
 
 export type BooksState = {
     sorter: Sorter | null,
     filter: Filter | null,
     query: string;
+    selectedBook: Item | null,
     booksData: BooksData | null,
     startIndex: number,
     isLoading: boolean,
+    isLoadingBook: boolean,
     showResults: boolean,
     isLoadingMoreBooks: boolean,
 }
@@ -64,6 +68,16 @@ export interface IUpdateStartIndex {
     payload: number
 }
 
+export interface ISubmitBookRequest{
+    type: typeof SUBMIT_BOOK_REQUEST,
+    payload: string
+}
+
+export interface IBookReceived{
+    type: typeof BOOK_RECEIVED,
+    payload: Item
+}
+
 export type BooksActionTypes = 
     IUpdateFilterValue 
     | IUpdateSearchQuery 
@@ -73,3 +87,5 @@ export type BooksActionTypes =
     | IUpdateStartIndex
     | IMoreBoksReceived
     | ISubmitMoreBooks
+    | ISubmitBookRequest
+    | IBookReceived

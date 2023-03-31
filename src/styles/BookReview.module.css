@@ -1,0 +1,57 @@
+.book-review-container{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px
+}
+
+.book-image{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    width: 100%
+}
+
+.book-image > img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.book-review-description{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200%;
+}
+
+.book-description {
+    margin-left: 5pt;
+}
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    .book-review-description{
+        width: 150%;
+    }
+    .book-image > img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+}
+
+@media (min-width: 300px) and (max-width: 700px) {
+    .book-review-container{
+        flex-direction: column;
+    }
+    .book-review-description{
+        width: 100%;
+    }
+    .book-review-description > p{
+        white-space:break-spaces;
+    }
+    .book-image > img{
+        width: 200%;
+    }
+    
+}

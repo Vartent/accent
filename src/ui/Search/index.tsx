@@ -1,17 +1,19 @@
 import { Button, Input } from "antd"
 import styles from '@/styles/Search.module.css'
-import getBooks, { RequestData } from "@/utils/http"
+import getBooks, { RequestData } from "@/utils/httpSearch"
 import { ChangeEvent, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState, useAppDispatch } from "@/store"
 import { submitSearchRequest, updateSearchQuery } from "@/store/Books/Books.actions"
 import { BASE_URL } from "@/utils/constants"
+import { useRouter } from "next/router"
 
 const SearchBar = () => {
 
     const booksRequestData = useSelector((state: RootState) => state.books)
     
     const dispatch = useAppDispatch()
+    const {push} = useRouter()
 
     const requestData: RequestData = {
         baseUrl: BASE_URL,
@@ -27,6 +29,7 @@ const SearchBar = () => {
 
     const handleSearch = () => {
         dispatch(submitSearchRequest(requestData))
+        push('/')
     }
 
     return(

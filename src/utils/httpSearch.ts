@@ -32,17 +32,14 @@ const compose_url = (requestData: RequestData) => {
 const getBooks = (requestData: RequestData) => {
 
     console.log(compose_url(requestData))
-    
+
     const data = fetch(compose_url(requestData))
         .then((resp) => {
             return resp.json()
         })
         .then((resp: VolumeDTO): BooksData => {
             console.log(resp)
-            return {
-                totalItems: resp.totalItems,
-                items: resp.items?.map((item) => (item.volumeInfo))
-            }
+            return resp
         })
         .then((resp) => {
             return resp

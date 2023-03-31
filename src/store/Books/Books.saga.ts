@@ -1,10 +1,12 @@
+import { Item } from '@/dto/VolumeDTO'
 import { BooksData } from '@/entities'
-import getBooks, { RequestData } from '@/utils/http'
+import getBookById from '@/utils/httpGetBookById'
+import getBooks, { RequestData } from '@/utils/httpSearch'
 import { call, ForkEffect, put, takeLatest, fork } from 'redux-saga/effects'
-import { moreBooksReceived, searchResultRecieved } from './Books.actions'
+import { bookReceived, moreBooksReceived, searchResultRecieved } from './Books.actions'
 
-import { SUBMIT_MORE_BOOKS, SUBMIT_SEARCH_REQUEST } from './Books.constants'
-import { ISubmitMoreBooks, ISubmitSearchRequest } from './Books.type'
+import { SUBMIT_BOOK_REQUEST, SUBMIT_MORE_BOOKS, SUBMIT_SEARCH_REQUEST } from './Books.constants'
+import { ISubmitBookRequest, ISubmitMoreBooks, ISubmitSearchRequest } from './Books.type'
 
 
 function* workerUpdateSearchResult({ payload }: ISubmitSearchRequest){
@@ -33,7 +35,21 @@ function* watchSubmitMoreBooks(){
     yield takeLatest(SUBMIT_MORE_BOOKS, workerUploadMoreBooks)
 }
 
+function* workerUploadBook({ payload }: ISubmitBookRequest){
+    try{
+        const book: Item = yield call(getBookById, payload)
+        yield put(bookReceived(book))
+    }catch(error){
+        console.error("Error while uploading: ", error)
+    }
+}
+
+function* watchSubmitBookRequest(){
+    yield takeLatest(SUBMIT_BOOK_REQUEST, workerUploadBook)
+}
+
 export const booksWatchers: ForkEffect[] = [
     fork(watchSearchRequest),
-    fork(watchSubmitMoreBooks)
+    fork(watchSubmitMoreBooks),
+    fork(watchSubmitBookRequest)
   ];

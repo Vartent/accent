@@ -16,8 +16,8 @@ const Filter = () => {
     }
 
     return(
-        <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-            <div style={{minWidth: "fit-content", marginRight: "15px"}}>filter by</div>
+        <div className={styles['select-container']}>
+            <div className={styles['select-title']}>filter by</div>
             <Select 
                 listHeight={150} 
                 className={styles["filter-sorter-select"]} 

@@ -2,7 +2,7 @@ import { RootState, useAppDispatch } from '@/store'
 import { submitMoreBooks } from '@/store/Books/Books.actions'
 import styles from '@/styles/Books.module.css'
 import { BASE_URL, MAX_RESULTS } from '@/utils/constants'
-import { RequestData } from '@/utils/http'
+import { RequestData } from '@/utils/httpSearch'
 import { Button } from 'antd'
 import { useSelector } from 'react-redux'
 import BookCard from './Book'
@@ -28,7 +28,7 @@ const BooksGrid = () => {
         // bug - api sends wrong total items value somethimes. Figure out why and fix
     return(
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "100px"}}>
-            <div className={styles['books-amount']}>Total books: {booksData?.totalItems}</div> 
+            {booksData?.items ? <div className={styles['books-amount']}>Total books: {booksData?.totalItems}</div>: null}
             <div className={styles['books-grid-container']}>
             { booksData?.items ? booksData.items.map((book) => <BookCard book={book}/>) : null}
         </div>

@@ -4,11 +4,14 @@ export type ImageLinks = {
 }
 
 export type Book = {
-    title: string;
-    categories: string[];
-    authors: string[];
-    imageLinks: ImageLinks;
-    description: string
+    id: string;
+    volumeInfo:{
+        title: string;
+        categories: string[];
+        authors: string[];
+        imageLinks: ImageLinks;
+        description: string
+    }
 }
 
 export type BooksData = {

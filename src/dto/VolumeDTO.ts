@@ -1,4 +1,5 @@
 export type Item = {
+    id: string;
     volumeInfo: {
         title: string;
         authors: string[];

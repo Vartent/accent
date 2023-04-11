@@ -3,9 +3,13 @@
 }
 
 .select-container{
-    display: flex;
-    flex-direction: row;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.select-container label{
+    margin: inherit !important;
 }
 
 .select-title{

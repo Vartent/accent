@@ -1,9 +1,8 @@
 import { call, ForkEffect, put, takeLatest, fork } from "redux-saga/effects";
 
-import { Item } from "@/dto/VolumeDTO";
-import { BooksData } from "@/entities";
+import { Item } from "@/entities";
 import getBookById from "@/utils/httpGetBookById";
-import getBooks from "@/utils/httpSearch";
+import getItems, { ItemsData } from "@/utils/httpSearch";
 
 import {
   bookReceived,
@@ -23,7 +22,7 @@ import {
 
 function* workerUpdateSearchResult({ payload }: ISubmitSearchRequest) {
   try {
-    const booksResult: BooksData = yield call(getBooks, payload);
+    const booksResult: ItemsData = yield call(getItems, payload);
 
     yield put(searchResultRecieved(booksResult));
   } catch (error) {
@@ -37,7 +36,7 @@ function* watchSearchRequest() {
 
 function* workerUploadMoreBooks({ payload }: ISubmitMoreBooks) {
   try {
-    const booksResult: BooksData = yield call(getBooks, payload);
+    const booksResult: ItemsData = yield call(getItems, payload);
 
     yield put(moreBooksReceived(booksResult));
   } catch (error) {

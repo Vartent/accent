@@ -1,5 +1,5 @@
-import { Book } from "@/entities";
+import { Item } from "@/entities";
 
 export type Props = {
-  book: Book;
+  item: Item;
 };

@@ -16,10 +16,11 @@ import { BooksActionTypes, BooksState } from "./Books.type";
 
 const initialState: BooksState = {
   sorter: SorterEnum.relevance,
-  filter: FilterEnum.all,
+  filter: [],
   query: "",
   selectedBook: null,
-  booksData: null,
+  totalItems: 0,
+  items: null,
   startIndex: 0,
   isLoading: false,
   isLoadingMoreBooks: false,
@@ -57,7 +58,9 @@ export default function BooksReducer(
       return {
         ...state,
         isLoading: false,
-        booksData: action.payload,
+        items: action.payload.items,
+        totalItems: action.payload.totalAmount,
+        startIndex: 0,
       };
     case SUBMIT_MORE_BOOKS:
       return {
@@ -68,11 +71,7 @@ export default function BooksReducer(
       return {
         ...state,
         isLoadingMoreBooks: false,
-        booksData: {
-          ...state.booksData,
-          items: [...(state.booksData?.items ?? []), ...action.payload.items],
-          totalItems: state.booksData?.totalItems ?? 0, // add this line to set totalItems
-        },
+        items: [...(state.items ?? []), ...action.payload.items],
         startIndex: state.startIndex + action.payload.items.length,
       };
     case SUBMIT_BOOK_REQUEST:

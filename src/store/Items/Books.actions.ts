@@ -1,7 +1,6 @@
-import { Item } from "@/dto/VolumeDTO";
-import { BooksData } from "@/entities";
+import { Item } from "@/entities";
 import { Filter, Sorter } from "@/ui/Filter/index.type";
-import { RequestData } from "@/utils/httpSearch";
+import { ItemsData, RequestData } from "@/utils/httpSearch";
 
 import {
   UPDATE_SEARCH_RESULT,
@@ -38,7 +37,7 @@ export function submitMoreBooks(payload: RequestData): BooksActionTypes {
   };
 }
 
-export function moreBooksReceived(payload: BooksData): BooksActionTypes {
+export function moreBooksReceived(payload: ItemsData): BooksActionTypes {
   return {
     type: MORE_BOOKS_RECEIVED,
     payload,
@@ -52,7 +51,7 @@ export function submitSearchRequest(payload: RequestData): BooksActionTypes {
   };
 }
 
-export function searchResultRecieved(data: BooksData): BooksActionTypes {
+export function searchResultRecieved(data: ItemsData): BooksActionTypes {
   return {
     type: UPDATE_SEARCH_RESULT,
     payload: data,
@@ -73,7 +72,7 @@ export function updateSearchQuery(payload: string): BooksActionTypes {
   };
 }
 
-export function updateFilterValue(payload: Filter): BooksActionTypes {
+export function updateFilterValue(payload: number[]): BooksActionTypes {
   return {
     type: UPDATE_FILTER_VALUE,
     payload,

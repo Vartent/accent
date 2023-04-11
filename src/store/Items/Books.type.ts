@@ -1,7 +1,6 @@
-import { Item } from "@/dto/VolumeDTO";
-import { BooksData } from "@/entities";
-import { Filter, Sorter } from "@/ui/Filter/index.type";
-import { RequestData } from "@/utils/httpSearch";
+import { Item } from "@/entities";
+import { Sorter } from "@/ui/Filter/index.type";
+import { ItemsData, RequestData } from "@/utils/httpSearch";
 
 import {
   UPDATE_SEARCH_RESULT,
@@ -17,16 +16,17 @@ import {
 } from "./Books.constants";
 
 export type BooksState = {
-  booksData: BooksData | null;
-  filter: Filter | null;
+  filter: number[];
   isLoading: boolean;
   isLoadingBook: boolean;
   isLoadingMoreBooks: boolean;
+  items: Item[] | null;
   query: string;
   selectedBook: Item | null;
   showResults: boolean;
   sorter: Sorter | null;
   startIndex: number;
+  totalItems: number;
 };
 
 export interface ISubmitMoreBooks {
@@ -35,7 +35,7 @@ export interface ISubmitMoreBooks {
 }
 
 export interface IMoreBoksReceived {
-  payload: BooksData;
+  payload: ItemsData;
   type: typeof MORE_BOOKS_RECEIVED;
 }
 
@@ -45,7 +45,7 @@ export interface IUpdateSearchQuery {
 }
 
 export interface IUpdateFilterValue {
-  payload: Filter;
+  payload: number[];
   type: typeof UPDATE_FILTER_VALUE;
 }
 
@@ -60,7 +60,7 @@ export interface ISubmitSearchRequest {
 }
 
 export interface ISearchResultRecieved {
-  payload: BooksData;
+  payload: ItemsData;
   type: typeof UPDATE_SEARCH_RESULT;
 }
 

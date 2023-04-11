@@ -2,7 +2,7 @@ import { Select } from "antd";
 
 import { sorterOptions } from "@/data/Sorter";
 import { useAppDispatch } from "@/store";
-import { updateSorterValue } from "@/store/Books/Books.actions";
+import { updateSorterValue } from "@/store/Items/Books.actions";
 import styles from "@/styles/Filter.module.css";
 
 import { Sorter, SorterEnum } from "../Filter/index.type";

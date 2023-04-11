@@ -1,11 +1,22 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
-  padding-top: 5vh;
 }
 
 .main .row{
   min-width: 80vw;
+}
+
+.logo-container {
+  display: flex;
+  justify-self: center;
+  /* align-items: center;
+  justify-content: center; */
+  height: 100%;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 16px;
 }

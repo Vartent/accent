@@ -1,0 +1,18 @@
+.cart{
+    border-radius: 3px;
+    font-size: 20pt;
+}
+
+.cart:hover{
+    box-shadow: tan 0 0 1px;
+    cursor: pointer;
+}
+
+.cart-icon{
+    margin: 3px 0 0 0;
+}
+
+.badge{
+    font-size: 10pt;
+    justify-self: end;
+}

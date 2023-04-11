@@ -8,7 +8,7 @@ import { RootState, useAppDispatch } from "@/store";
 import {
   submitSearchRequest,
   updateSearchQuery,
-} from "@/store/Books/Books.actions";
+} from "@/store/Items/Books.actions";
 import styles from "@/styles/Search.module.css";
 import { BASE_URL } from "@/utils/constants";
 import { RequestData } from "@/utils/httpSearch";
@@ -21,10 +21,6 @@ const SearchBar = () => {
   const { push } = useRouter();
 
   const requestData: RequestData = {
-    baseUrl: BASE_URL,
-    searchQuery: booksRequestData.query,
-    filter: booksRequestData.filter,
-    sorter: booksRequestData.sorter,
     startIndex: booksRequestData.startIndex,
   };
 

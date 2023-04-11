@@ -1,20 +1,12 @@
-export type ImageLinks = {
-  smallThumbnail: string;
-  thumbnail: string;
-};
-
-export type Book = {
-  id: string;
-  volumeInfo: {
-    authors: string[];
-    categories: string[];
-    description: string;
-    imageLinks: ImageLinks;
-    title: string;
+export type Item = {
+  brand: number;
+  id: number;
+  image: string;
+  regular_price: {
+    currency: string;
+    value: number;
   };
-};
-
-export type BooksData = {
-  items: Book[];
-  totalItems: number;
+  sku: string;
+  title: string;
+  type: string;
 };

@@ -1,8 +1,14 @@
+import { useEffect } from "react";
+
 import { Button } from "antd";
 import { useSelector } from "react-redux";
 
 import { RootState, useAppDispatch } from "@/store";
-import { submitMoreBooks } from "@/store/Books/Books.actions";
+import {
+  submitBookRequest,
+  submitMoreBooks,
+  submitSearchRequest,
+} from "@/store/Items/Books.actions";
 import styles from "@/styles/Books.module.css";
 import { BASE_URL, MAX_RESULTS } from "@/utils/constants";
 import { RequestData } from "@/utils/httpSearch";
@@ -10,24 +16,25 @@ import { RequestData } from "@/utils/httpSearch";
 import BookCard from "./Book";
 
 const BooksGrid = () => {
-  const booksRequestData = useSelector((state: RootState) => state.books);
-  const booksData = booksRequestData.booksData;
+  const stateItems = useSelector((state: RootState) => state.items);
+  const items = stateItems.items;
 
   const dispatch = useAppDispatch();
 
   const requestData: RequestData = {
-    baseUrl: BASE_URL,
-    searchQuery: booksRequestData.query,
-    filter: booksRequestData.filter,
-    sorter: booksRequestData.sorter,
-    startIndex: booksRequestData.startIndex + 30,
+    startIndex: stateItems.startIndex + MAX_RESULTS,
+    filter: stateItems.filter,
   };
 
+  useEffect(() => {
+    dispatch(submitSearchRequest({ startIndex: 0, filter: stateItems.filter }));
+  }, [dispatch, stateItems.filter]);
+
   const handleClick = () => {
+    console.log(requestData);
     dispatch(submitMoreBooks(requestData));
   };
 
-  // bug - api sends wrong total items value somethimes. Figure out why and fix
   return (
     <div
       style={{
@@ -37,27 +44,20 @@ const BooksGrid = () => {
         marginBottom: "100px",
       }}
     >
-      {booksData?.items ? (
-        <div className={styles["books-amount"]}>
-          Total books: {booksData?.totalItems}
-        </div>
-      ) : null}
       <div className={styles["books-grid-container"]}>
-        {booksData?.items
-          ? booksData.items.map((book) => <BookCard book={book} />)
-          : null}
+        {items ? items.map((value) => <BookCard item={value} />) : null}
       </div>
       <Button
-        onClick={handleClick}
-        className={styles["show-more-button"]}
         style={{
           display:
-            booksData?.items == undefined ||
-            booksData?.items.length == booksData?.totalItems ||
-            booksData.items.length < MAX_RESULTS
+            stateItems?.items == undefined ||
+            stateItems?.items.length == stateItems?.totalItems ||
+            stateItems.items.length < MAX_RESULTS
               ? "none"
               : "block",
         }}
+        onClick={handleClick}
+        className={styles["show-more-button"]}
       >
         Show more
       </Button>

@@ -1,14 +1,16 @@
-import { Skeleton } from "antd";
+import { Col, Layout, Row, Skeleton } from "antd";
 import Head from "next/head";
 import { useSelector } from "react-redux";
 
-import { SearchHeaderLayout } from "@/layouts";
 import { RootState } from "@/store";
-import BooksGrid from "@/ui/Books";
+import styles from "@/styles/Home.module.css";
+import { BooksGrid } from "@/ui";
+import Cart from "@/ui/Cart";
+import Filter from "@/ui/Filter";
+
+const { Header, Footer, Sider, Content } = Layout;
 
 export default function Home() {
-  const isLoading = useSelector((state: RootState) => state.books.isLoading);
-
   return (
     <>
       <Head>
@@ -17,9 +19,33 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SearchHeaderLayout>
-        {isLoading ? <Skeleton active /> : <BooksGrid />}
-      </SearchHeaderLayout>
+      <div className={styles.main}>
+        <Header style={{ backgroundColor: "azure" }}>
+          <Layout
+            style={{
+              backgroundColor: "unset",
+              display: "flex",
+              fontSize: "20pt",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexDirection: "row",
+            }}
+          >
+            <div className={styles["logo-container"]}>Accent Shop</div>
+            <Cart />
+          </Layout>
+        </Header>
+        <Row style={{ padding: "15px" }}>
+          <Col span={4}>
+            <Filter />
+          </Col>
+          <Col span={20}>
+            <BooksGrid />
+          </Col>
+        </Row>
+      </div>
     </>
   );
 }
+
+// {isLoading ? <Skeleton active /> : <BooksGrid />}

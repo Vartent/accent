@@ -1,4 +1,4 @@
-import { FilterEnum, SorterEnum } from "@/ui/Filter/index.type";
+import { SorterEnum } from "@/ui/Filter/index.type";
 
 import {
   UPDATE_SEARCH_RESULT,
@@ -6,32 +6,32 @@ import {
   UPDATE_FILTER_VALUE,
   UPDATE_SEARCH_QUERY,
   UPDATE_SORTER_VALUE,
-  SUBMIT_MORE_BOOKS,
-  MORE_BOOKS_RECEIVED,
-  SUBMIT_BOOK_REQUEST,
-  BOOK_RECEIVED,
+  SUBMIT_MORE_ITEMS,
+  MORE_ITEMS_RECEIVED,
+  SUBMIT_ITEM_REQUEST,
+  ITEM_RECEIVED,
   // NONE_FOUND
-} from "./Books.constants";
-import { BooksActionTypes, BooksState } from "./Books.type";
+} from "./Item.constants";
+import { ItemsActionTypes, ItemsState } from "./Item.type";
 
-const initialState: BooksState = {
+const initialState: ItemsState = {
   sorter: SorterEnum.relevance,
   filter: [],
   query: "",
-  selectedBook: null,
+  selectedItem: null,
   totalItems: 0,
   items: null,
   startIndex: 0,
   isLoading: false,
-  isLoadingMoreBooks: false,
-  isLoadingBook: false,
-  showResults: false, //before we start searching there's no need to show books grid or amount of results. If total amount = 0 and showResults = true => nothing found
+  isLoadingMoreItems: false,
+  isLoadingItem: false,
+  showResults: false, //before we start searching there's no need to show Items grid or amount of results. If total amount = 0 and showResults = true => nothing found
 };
 
-export default function BooksReducer(
+export default function ItemsReducer(
   state = initialState,
-  action: BooksActionTypes
-): BooksState {
+  action: ItemsActionTypes
+): ItemsState {
   switch (action.type) {
     case UPDATE_SEARCH_QUERY:
       return {
@@ -62,28 +62,28 @@ export default function BooksReducer(
         totalItems: action.payload.totalAmount,
         startIndex: 0,
       };
-    case SUBMIT_MORE_BOOKS:
+    case SUBMIT_MORE_ITEMS:
       return {
         ...state,
-        isLoadingMoreBooks: true,
+        isLoadingMoreItems: true,
       };
-    case MORE_BOOKS_RECEIVED:
+    case MORE_ITEMS_RECEIVED:
       return {
         ...state,
-        isLoadingMoreBooks: false,
+        isLoadingMoreItems: false,
         items: [...(state.items ?? []), ...action.payload.items],
         startIndex: state.startIndex + action.payload.items.length,
       };
-    case SUBMIT_BOOK_REQUEST:
+    case SUBMIT_ITEM_REQUEST:
       return {
         ...state,
-        isLoadingBook: true,
+        isLoadingItem: true,
       };
-    case BOOK_RECEIVED:
+    case ITEM_RECEIVED:
       return {
         ...state,
-        selectedBook: action.payload,
-        isLoadingBook: false,
+        selectedItem: action.payload,
+        isLoadingItem: false,
       };
     default:
       return state;

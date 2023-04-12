@@ -9,34 +9,34 @@ import {
   UPDATE_SEARCH_QUERY,
   UPDATE_SORTER_VALUE,
   UPDATE_START_INDEX,
-  SUBMIT_MORE_BOOKS,
-  MORE_BOOKS_RECEIVED,
-  SUBMIT_BOOK_REQUEST,
-  BOOK_RECEIVED,
-} from "./Books.constants";
+  SUBMIT_MORE_ITEMS,
+  MORE_ITEMS_RECEIVED,
+  SUBMIT_ITEM_REQUEST,
+  ITEM_RECEIVED,
+} from "./Item.constants";
 
-export type BooksState = {
+export type ItemsState = {
   filter: number[];
   isLoading: boolean;
-  isLoadingBook: boolean;
-  isLoadingMoreBooks: boolean;
+  isLoadingItem: boolean;
+  isLoadingMoreItems: boolean;
   items: Item[] | null;
   query: string;
-  selectedBook: Item | null;
+  selectedItem: Item | null;
   showResults: boolean;
   sorter: Sorter | null;
   startIndex: number;
   totalItems: number;
 };
 
-export interface ISubmitMoreBooks {
+export interface ISubmitMoreItems {
   payload: RequestData;
-  type: typeof SUBMIT_MORE_BOOKS;
+  type: typeof SUBMIT_MORE_ITEMS;
 }
 
-export interface IMoreBoksReceived {
+export interface IMoreItemsReceived {
   payload: ItemsData;
-  type: typeof MORE_BOOKS_RECEIVED;
+  type: typeof MORE_ITEMS_RECEIVED;
 }
 
 export interface IUpdateSearchQuery {
@@ -69,24 +69,24 @@ export interface IUpdateStartIndex {
   type: typeof UPDATE_START_INDEX;
 }
 
-export interface ISubmitBookRequest {
+export interface ISubmitItemRequest {
   payload: string;
-  type: typeof SUBMIT_BOOK_REQUEST;
+  type: typeof SUBMIT_ITEM_REQUEST;
 }
 
-export interface IBookReceived {
+export interface IItemReceived {
   payload: Item;
-  type: typeof BOOK_RECEIVED;
+  type: typeof ITEM_RECEIVED;
 }
 
-export type BooksActionTypes =
+export type ItemsActionTypes =
   | IUpdateFilterValue
   | IUpdateSearchQuery
   | IUpdateSorterValue
   | ISubmitSearchRequest
   | ISearchResultRecieved
   | IUpdateStartIndex
-  | IMoreBoksReceived
-  | ISubmitMoreBooks
-  | ISubmitBookRequest
-  | IBookReceived;
+  | IMoreItemsReceived
+  | ISubmitMoreItems
+  | ISubmitItemRequest
+  | IItemReceived;

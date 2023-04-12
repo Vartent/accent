@@ -3,7 +3,7 @@ import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { useSelector } from "react-redux";
 
 import { RootState, useAppDispatch } from "@/store";
-import { updateFilterValue } from "@/store/Items/Books.actions";
+import { updateFilterValue } from "@/store/Items/Item.actions";
 import styles from "@/styles/Filter.module.css";
 
 import brands from "../../data/brands.json";

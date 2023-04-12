@@ -1,9 +1,9 @@
 import { all } from "@redux-saga/core/effects";
 
-import { booksWatchers } from "./Items/Books.saga";
+import { ItemsWatchers } from "./Items/Item.saga";
 
 export function* rootSagas() {
-  const watchers = [...booksWatchers];
+  const watchers = [...ItemsWatchers];
 
   yield all(watchers);
 }

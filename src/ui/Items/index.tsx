@@ -5,17 +5,16 @@ import { useSelector } from "react-redux";
 
 import { RootState, useAppDispatch } from "@/store";
 import {
-  submitBookRequest,
-  submitMoreBooks,
+  submitMoreItems,
   submitSearchRequest,
-} from "@/store/Items/Books.actions";
-import styles from "@/styles/Books.module.css";
-import { BASE_URL, MAX_RESULTS } from "@/utils/constants";
+} from "@/store/Items/Item.actions";
+import styles from "@/styles/Items.module.css";
+import { MAX_RESULTS } from "@/utils/constants";
 import { RequestData } from "@/utils/httpSearch";
 
-import BookCard from "./Book";
+import ItemCard from "./Item";
 
-const BooksGrid = () => {
+const ItemsGrid = () => {
   const stateItems = useSelector((state: RootState) => state.items);
   const items = stateItems.items;
 
@@ -32,7 +31,7 @@ const BooksGrid = () => {
 
   const handleClick = () => {
     console.log(requestData);
-    dispatch(submitMoreBooks(requestData));
+    dispatch(submitMoreItems(requestData));
   };
 
   return (
@@ -44,8 +43,8 @@ const BooksGrid = () => {
         marginBottom: "100px",
       }}
     >
-      <div className={styles["books-grid-container"]}>
-        {items ? items.map((value) => <BookCard item={value} />) : null}
+      <div className={styles["Items-grid-container"]}>
+        {items ? items.map((value) => <ItemCard item={value} />) : null}
       </div>
       <Button
         style={{
@@ -65,4 +64,4 @@ const BooksGrid = () => {
   );
 };
 
-export default BooksGrid;
+export default ItemsGrid;

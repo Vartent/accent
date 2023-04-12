@@ -1,4 +1,4 @@
-.books-grid-container{
+.Items-grid-container{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6,14 +6,14 @@
     grid-row-gap: 15px;
 }
 
-.books-amount{
+.Items-amount{
     font-size: 14pt;
     color: rgb(95, 135, 135);
     display: flex;
     margin: 0 0 10px 0;
 }
 
-.book-container{
+.Item-container{
     min-width: 200px;
     min-height: 300px;
     background-color: rgba(246, 254, 255, 0.038);
@@ -27,34 +27,34 @@
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.book-container:hover{
+.Item-container:hover{
     box-shadow: 0 0 10px rgb(216, 235, 237);
 }
 
-.book-image{
+.Item-image{
     width: 70%;
     align-self: center;
     margin-bottom: 15px;
 }
 
-.book-container > p{
+.Item-container > p{
     margin-left: 5px;
     font-size: 10pt;
 }
 
-.book-title{
+.Item-title{
     font-weight: bold;
     height: 24pt;
     overflow: hidden;
 }
 
-.book-authors{
+.Item-authors{
     font-weight: lighter;
     height: 24pt;
     overflow: hidden;
 }
 
-.book-category{
+.Item-category{
     font-style: italic;
     text-transform: capitalize;
     color: rgb(196, 196, 196);
@@ -73,19 +73,19 @@
 
 
 @media (min-width: 701px) and (max-width: 1120px) {
-    .books-grid-container{
+    .Items-grid-container{
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (min-width: 450px) and (max-width: 850px) {
-    .books-grid-container{
+    .Items-grid-container{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 449px) {
-    .books-grid-container{
+    .Items-grid-container{
         grid-template-columns: repeat(1, 1fr);
     }
 }

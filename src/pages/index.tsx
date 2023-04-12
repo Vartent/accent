@@ -1,15 +1,13 @@
-import { Col, Layout, Row, Skeleton } from "antd";
+import { Col, Layout, Row } from "antd";
 import Head from "next/head";
-import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
-import { RootState } from "@/store";
 import styles from "@/styles/Home.module.css";
-import { BooksGrid } from "@/ui";
+import { ItemsGrid } from "@/ui";
 import Cart from "@/ui/Cart";
 import Filter from "@/ui/Filter";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header } = Layout;
 
 export default function Home() {
   const isSmallScreen = useMediaQuery({ maxWidth: 500 });
@@ -62,7 +60,7 @@ export default function Home() {
             <Filter />
           </Col>
           <Col span={20} sm={18} xs={24}>
-            <BooksGrid />
+            <ItemsGrid />
           </Col>
         </Row>
       </div>
@@ -70,4 +68,4 @@ export default function Home() {
   );
 }
 
-// {isLoading ? <Skeleton active /> : <BooksGrid />}
+// {isLoading ? <Skeleton active /> : <ItemsGrid />}

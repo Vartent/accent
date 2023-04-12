@@ -6,14 +6,14 @@ import {
   DECREMENT_QUAMTITY,
   CLEAR_CART,
 } from "./Cart.constants";
-import { CartActionTypes, CartItem, CartState, ProductId } from "./Cart.type";
+import { CartActionTypes, CartState } from "./Cart.type";
 
 const initialState: CartState = {
   items: [],
   totalCost: 0,
 };
 
-export default function BookReducer(
+export default function CartReducer(
   state = initialState,
   action: CartActionTypes
 ): CartState {
@@ -23,7 +23,7 @@ export default function BookReducer(
         (element) => element.productId == action.payload.productId
       );
 
-      if (itemIndex !== 1) {
+      if (itemIndex !== -1) {
         const updatedItems = [...state.items];
         const updatedItem = updatedItems[itemIndex];
 
@@ -33,12 +33,16 @@ export default function BookReducer(
         return {
           ...state,
           items: [...updatedItems],
+          totalCost: updatedItems.reduce((total, item) => total + item.cost, 0),
         };
       }
 
       return {
         ...state,
         items: [...state.items, action.payload],
+        totalCost:
+          state.items.reduce((total, item) => total + item.cost, 0) +
+          action.payload.cost,
       };
     }
 
@@ -55,11 +59,66 @@ export default function BookReducer(
         return {
           ...state,
           items: updatedItems,
+          totalCost: updatedItems.reduce((total, item) => total + item.cost, 0),
         };
       }
 
       return state;
     }
+    case UPDATE_QUANTITY: {
+      const newArray = [...state.items];
+
+      const newItem = newArray.find(
+        (item) => item.productId == action.payload.id
+      );
+
+      if (newItem) {
+        newItem.amount = action.payload.quantity;
+        newItem.cost = newItem.amount * newItem.price;
+
+        return {
+          ...state,
+          items: [...newArray],
+          totalCost: newArray.reduce((total, item) => total + item.cost, 0),
+        };
+      }
+
+      return state;
+    }
+    case INCREMENT_QUANTITY: {
+      const newArray = [...state.items];
+
+      const newItem = newArray.find((item) => item.productId == action.payload);
+
+      if (newItem) {
+        newItem.amount = newItem.amount + 1;
+
+        return {
+          ...state,
+          items: [...newArray],
+        };
+      }
+
+      return state;
+    }
+    case DECREMENT_QUAMTITY: {
+      const newArray = [...state.items];
+
+      const newItem = newArray.find((item) => item.productId == action.payload);
+
+      if (newItem) {
+        newItem.amount = newItem.amount - 1;
+
+        return {
+          ...state,
+          items: [...newArray],
+        };
+      }
+
+      return state;
+    }
+    case CLEAR_CART:
+      return initialState;
     default:
       return state;
   }

@@ -16,3 +16,7 @@
     font-size: 10pt;
     justify-self: end;
 }
+
+.cart-item-actions {
+    display: flex !important;
+}

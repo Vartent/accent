@@ -1,6 +1,7 @@
 import { Col, Layout, Row, Skeleton } from "antd";
 import Head from "next/head";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
 import { RootState } from "@/store";
 import styles from "@/styles/Home.module.css";
@@ -11,6 +12,8 @@ import Filter from "@/ui/Filter";
 const { Header, Footer, Sider, Content } = Layout;
 
 export default function Home() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 500 });
+
   return (
     <>
       <Head>
@@ -20,7 +23,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.main}>
-        <Header style={{ backgroundColor: "azure" }}>
+        <Header
+          style={{
+            backgroundColor: "azure",
+            position: "fixed",
+            zIndex: 1,
+            width: "100%",
+          }}
+        >
           <Layout
             style={{
               backgroundColor: "unset",
@@ -31,15 +41,27 @@ export default function Home() {
               flexDirection: "row",
             }}
           >
-            <div className={styles["logo-container"]}>Accent Shop</div>
+            <div
+              style={isSmallScreen ? { fontSize: "15pt" } : undefined}
+              className={styles["logo-container"]}
+            >
+              Accent Shop
+            </div>
             <Cart />
           </Layout>
         </Header>
-        <Row style={{ padding: "15px" }}>
-          <Col span={4}>
+        <Row
+          style={{
+            padding: "75px 15px 0 15px",
+            display: "flex",
+            flexDirection: isSmallScreen ? "column" : "row",
+          }}
+          justify={"center"}
+        >
+          <Col span={20} sm={6}>
             <Filter />
           </Col>
-          <Col span={20}>
+          <Col span={20} sm={18} xs={24}>
             <BooksGrid />
           </Col>
         </Row>

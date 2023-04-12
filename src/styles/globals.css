@@ -96,6 +96,11 @@ a {
   text-decoration: none;
 }
 
+.ant-list-item-action {
+  display: flex !important;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

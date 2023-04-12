@@ -31,14 +31,16 @@ const Filter = () => {
 
   return (
     <div className={styles["select-container"]}>
-      <div className={styles["select-title"]}>filter by</div>
+      <div className={styles["select-title"]}>Фильтр</div>
       <Checkbox.Group
         style={{ display: "flex", flexDirection: "column" }}
         options={optionsBrands}
         onChange={handleChange}
         value={filterValues}
       />
-      <Button onClick={handleClick}>Очистить</Button>
+      <Button style={{ margin: "15px 0 15px 0" }} onClick={handleClick}>
+        Очистить
+      </Button>
     </div>
   );
 };
